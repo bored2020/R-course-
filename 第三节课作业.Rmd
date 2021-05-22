@@ -1,0 +1,68 @@
+---
+title: "第三节课作业"
+author:
+  - 冯裕祺
+documentclass: ctexart
+keywords:
+  - 中文
+  - R Markdown
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+---
+
+#  第三节课 课后第一题
+```{r}
+findmax <- function(x){
+  p<-which(x==x[which.max(x)],arr.ind = T)
+  list(maxvalue = x[p],location=which(x==x[which.max(x)],arr.ind = T))
+}
+A = matrix(floor(rnorm(100,0,4)),4,25)
+findmax(A)
+```
+
+#  第三节课作业第二题
+```{r}
+test<-function(x,y){
+  p<-(x^2+sin(x*y)+2*y)
+  return(p)
+}
+```
+
+
+# 第三节课第三题
+
+```{r}
+fillna<-function(a){
+  m<-which(is.na(a),arr.ind = T)
+  a[m]<-c(rep(mean(a,na.rm =TRUE),nrow(m)))
+  return(a)
+  
+}
+A=matrix(floor(rnorm(100,0,4)),4,25)
+A[2,5]=NA; A[4,8]=NA; A[3,15]=NA
+fillna(A)
+
+```
+
+
+#  第三节课第四题
+
+```{r}
+fzero<-function(f, a, b, eps=1e-5){
+  if   (f(a)*f(b)>0)
+    list (fail="finding root is fail!")
+  else {repeat { 
+    if (abs(b-a)<eps)   break
+    x<-(a+b)/2
+    if  (f(a)*f(b)<0)  b<-x else a<-x
+  }
+    list(root=(a+b)/2, fun=f(x))
+  }
+}
+f<-function(x) {x^3-x-1}  
+fzero(f,1,2,1e-5)
+```
+

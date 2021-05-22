@@ -1,0 +1,66 @@
+---
+title: "第二次课作业"
+author:
+  - 冯裕祺
+documentclass: ctexart
+keywords:
+  - 第二次课
+output:
+  rticles::ctex:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+---
+
+# 第一题
+
+```{r}
+#help(tapply)
+data<-data.frame(name = c("jack","rose","mike"),age = c(5,6,7),score = c(60,80,90))
+aver<-tapply(data$score,data$age,mean)
+aver
+```
+
+# 第二题
+```{r}
+data2<-read.table(file= "D:/rclasstongjiruanjian/user.txt",header = T)
+```
+
+```{r}
+table(data2[,2])
+table(data2[,3])
+```
+
+```{r}
+d<-tapply(data2[,4],data2[,2],mean)
+d
+e<-tapply(data2[,4],data2[,3],mean)
+e
+```
+
+
+```{r}
+list<-list(sexcount=table(data2[,2]),agecount = table(data2[,3]),sexheight = d,ageheight = e)
+list
+```
+
+
+
+# 第三题
+```{r}
+q<-rnorm(100,0,1)
+juzhen<-matrix(q,5,20)
+juzhen
+write.table(as.vector(juzhen),file="juzhen.txt")
+w<-read.table("juzhen.txt")
+y<-matrix(t(w),5,20)
+```
+
+
+# 第四题
+```{r}
+t<-0
+for( i in 1:100)
+    t<-(t+1/i)
+    print(t)
+```
